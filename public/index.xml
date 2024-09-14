@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Florian Bertholin</title>
-    <link>https://www.florianbertholin.com/</link>
+    <link>http://localhost:1313/</link>
     <description>Recent content on Florian Bertholin</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate>Mon, 18 Jan 2021 14:46:26 +0200</lastBuildDate>
-    <atom:link href="https://www.florianbertholin.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>I&#39;m joining Livestorm</title>
-      <link>https://www.florianbertholin.com/posts/im-joining-livestorm/</link>
+      <link>http://localhost:1313/posts/im-joining-livestorm/</link>
       <pubDate>Mon, 18 Jan 2021 14:46:26 +0200</pubDate>
-      <guid>https://www.florianbertholin.com/posts/im-joining-livestorm/</guid>
+      <guid>http://localhost:1313/posts/im-joining-livestorm/</guid>
       <description></description>
     </item>
     <item>
       <title>Burnout and I&#39;m leaving Heetch</title>
-      <link>https://www.florianbertholin.com/posts/burnout-and-im-leaving-heetch/</link>
+      <link>http://localhost:1313/posts/burnout-and-im-leaving-heetch/</link>
       <pubDate>Mon, 31 Aug 2020 14:44:01 +0200</pubDate>
-      <guid>https://www.florianbertholin.com/posts/burnout-and-im-leaving-heetch/</guid>
+      <guid>http://localhost:1313/posts/burnout-and-im-leaving-heetch/</guid>
       <description></description>
     </item>
     <item>
       <title>I&#39;m Joining Heetch</title>
-      <link>https://www.florianbertholin.com/posts/im-joining-heetch/</link>
+      <link>http://localhost:1313/posts/im-joining-heetch/</link>
       <pubDate>Mon, 01 Jun 2015 14:41:43 +0200</pubDate>
-      <guid>https://www.florianbertholin.com/posts/im-joining-heetch/</guid>
+      <guid>http://localhost:1313/posts/im-joining-heetch/</guid>
       <description></description>
     </item>
     <item>
       <title>Welcome</title>
-      <link>https://www.florianbertholin.com/posts/welcome/</link>
+      <link>http://localhost:1313/posts/welcome/</link>
       <pubDate>Sun, 10 May 2015 14:09:38 +0200</pubDate>
-      <guid>https://www.florianbertholin.com/posts/welcome/</guid>
+      <guid>http://localhost:1313/posts/welcome/</guid>
       <description></description>
     </item>
     <item>
       <title>About</title>
-      <link>https://www.florianbertholin.com/about/</link>
+      <link>http://localhost:1313/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.florianbertholin.com/about/</guid>
+      <guid>http://localhost:1313/about/</guid>
       <description></description>
     </item>
     <item>
       <title>Now</title>
-      <link>https://www.florianbertholin.com/now/</link>
+      <link>http://localhost:1313/now/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://www.florianbertholin.com/now/</guid>
+      <guid>http://localhost:1313/now/</guid>
       <description></description>
     </item>
   </channel>
