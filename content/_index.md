@@ -9,4 +9,4 @@ These days, I am proud to be working as **Head of Engineering at Livestorm**, wh
 
 In addition to my work at Livestorm, I am an active member of the technology community. **I enjoy sharing my knowledge and experience with others** through writing and mentoring. I have written articles for industry publications, reviewed several books, and mentored several engineers, helping them to grow in their careers.
 
-If you would like to connect with me, you can find me on Linkedin or via Email. I am always open **to discussing new opportunities and collaborating** with others to achieve great things.
+If you would like to connect with me, you can find me on [Linkedin](https://www.linkedin.com/in/fbertholin/) or via [Email](mailto:florian@bertholin.com). I am always open **to discussing new opportunities and collaborating** with others to achieve great things.
