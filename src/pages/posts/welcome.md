@@ -11,7 +11,7 @@ I'm Florian, 28yo, passionate about software engineering and living in Geneva, S
 
 ![](./../../images/geneva2.png)
 
-Before that, I graduated from a French engineering university in 2012, Epitech.
+Before that, I graduated from a French engineering university in 2012, [Epitech](https://www.epitech.eu/).
 
 This blog is going to be a way for me to share my passions, especially programming. Most of the content will probably be about Ruby/Rails and Go. You can contact me via Linkedin or Email.
 
