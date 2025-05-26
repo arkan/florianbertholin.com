@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Annecy from "../images/annecy.jpg";
+---
+
+<Layout title="Now" description="What I am doing now?">
+	<div class="text-center">
+		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Now</h1>
+
+		<h2
+			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
+		>
+			What I am doing now?
+		</h2>
+
+		<div class="mt-10">
+			<div
+				class="prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"
+			>
+				<p>
+					I’m currently living in <strong>Annecy, France</strong>,
+					where I’m working remotely to modernize a decades-old
+					application using modern technologies such as Go,
+					microservices, infrastructure, etc.
+				</p>
+				<Image
+					src={Annecy}
+					alt="Annecy"
+					width={1000}
+					height={1000}
+					quality={70}
+				/>
+
+				<p>I'm also a proud father of a beautiful daughter. ☺️</p>
+			</div>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	@reference "../styles/global.css";
+
+	.icon-action-link {
+		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
+	}
+</style>

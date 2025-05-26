@@ -1,0 +1,40 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { formatDate, formatBlogPosts } from "../../js/utils";
+
+const allPosts = await Astro.glob("./*.md");
+const formattedPosts = formatBlogPosts(allPosts);
+---
+
+<Layout
+    title="Blog"
+    description="My thoughts on software engineering, leadership, and life"
+>
+    <div class="text-center">
+        <h1 class="text-4xl mt-0 mb-0 font-extrabold">Blog</h1>
+
+        <h2
+            class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
+        >
+            My thoughts on software engineering, leadership, and life
+        </h2>
+
+        <div class="mt-10">
+            <ul>
+                {
+                    formattedPosts.map((post) => (
+                        <li class="list-none">
+                            <a
+                                class="link link-hover link-primary"
+                                href={post.url}
+                            >
+                                {post.frontmatter.title} -{" "}
+                                {formatDate(post.frontmatter.date)}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+</Layout>

@@ -1,22 +1,25 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Florian from "../images/florian2.jpeg";
 ---
 
-<Layout title="Florian Bertholin">
+<Layout title="Florian Bertholin" description="Engineering Leader & Mentor">
 	<div class="text-center">
-		<!-- Navigation -->
+		<div class="avatar">
+			<div
+				class="mb-4 ring-primary ring-offset-base-100 w-36 rounded-full ring-2 ring-offset-2"
+			>
+				<Image
+					src={Florian}
+					alt="Florian"
+					width={200}
+					quality={70}
+					class="rounded-full w-36 mt-0 mb-0 ring-primary ring-offset-base-100 ring-2 ring-offset-2"
+				/>
+			</div>
+		</div>
 
-		<picture class="mb-2 h-auto w-36 rounded-full"
-			><img
-				width="400"
-				height="400"
-				class="mb-2 h-auto w-36 rounded-full"
-				alt="Florian Bertholin"
-				loading="lazy"
-				decoding="async"
-				src="https://www.florianbertholin.com/images/florian.png"
-			/></picture
-		>
 		<!-- Main Heading -->
 		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Florian Bertholin</h1>
 
@@ -32,7 +35,7 @@ import Layout from "../layouts/Layout.astro";
 				class="flex flex-wrap flex-row justify-center text-neutral-400 dark:text-neutral-500"
 			>
 				<a
-					class="px-1 transition-transform hover:scale-125 text-neutral-500 dark:text-neutral-400 hover:text-primary-700 dark:hover:text-primary-400"
+					class="icon-action-link"
 					style="will-change:transform"
 					href="mailto:florian@bertholin.com"
 					target="_blank"
@@ -51,8 +54,7 @@ import Layout from "../layouts/Layout.astro";
 							></path></svg
 						>
 					</span><a
-						class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
-						style="will-change:transform"
+						class="icon-action-link"
 						href="https://github.com/arkan"
 						target="_blank"
 						aria-label="Github"
@@ -70,8 +72,7 @@ import Layout from "../layouts/Layout.astro";
 							>
 						</span></a
 					><a
-						class="px-1 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
-						style="will-change:transform"
+						class="icon-action-link"
 						href="https://linkedin.com/in/fbertholin"
 						target="_blank"
 						aria-label="Linkedin"
@@ -93,9 +94,10 @@ import Layout from "../layouts/Layout.astro";
 			</div>
 		</div>
 
-		<div class="mt-1 text-2xl mx-auto">
-			<!-- Content Paragraphs -->
-			<div class="prose prose-lg text-gray-700 space-y-6 text-justify">
+		<div class="mt-10">
+			<div
+				class="prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"
+			>
 				<p>
 					I am a highly motivated individual with a strong passion for
 					technology and leadership.
@@ -124,32 +126,27 @@ import Layout from "../layouts/Layout.astro";
 				</p>
 
 				<p>
-					These days, I am proud to be working as <strong
-						>Head of Engineering at Livestorm</strong
-					>, where I oversee the development and delivery of our
-					technology solutions. My experience in Go, microservices
-					architectures, and infrastructure has enabled me to lead my
-					team to success and drive the growth of our platform.
+					These days, I am modernizing a decades-old application using
+					modern technologies (Go, microservices, infrastructure,
+					etc.).
 				</p>
 
 				<p>
-					In addition to my work at Livestorm, I am an active member
-					of the technology community. <strong
+					In addition to my work, I am an active member of the
+					technology community. <strong
 						>I enjoy sharing my knowledge and experience with others</strong
 					> through writing and mentoring. I have written articles for
-					industry publications, reviewed several books, and mentored several
-					engineers, helping them to grow in their careers.
+					industry publications, reviewed several books, and mentored engineers,
+					helping them to grow in their careers.
 				</p>
 
 				<p>
 					If you would like to connect with me, you can find me on <a
 						href="https://linkedin.com/in/florianbertholin"
-						class="text-blue-600 hover:text-blue-800 underline"
-						>Linkedin</a
+						class="link link-hover link-primary">Linkedin</a
 					> or via <a
 						href="mailto:contact@florianbertholin.com"
-						class="text-blue-600 hover:text-blue-800 underline"
-						>Email</a
+						class="link link-hover link-primary">Email</a
 					>. I am always open <strong
 						>to discussing new opportunities and collaborating</strong
 					> with others to achieve great things.
@@ -158,3 +155,11 @@ import Layout from "../layouts/Layout.astro";
 		</div>
 	</div>
 </Layout>
+
+<style>
+	@reference "../styles/global.css";
+
+	.icon-action-link {
+		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
+	}
+</style>

@@ -1,0 +1,44 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import FourOhFour from "../images/404.png";
+---
+
+<Layout title="404" description="Page not found">
+	<div class="text-center">
+		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Page not found</h1>
+
+		<h2
+			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
+		>
+			Oops, this page does not exist.
+		</h2>
+
+		<div class="mt-1">
+			<div class="text-gray-700">
+				<div class="w-60 mx-auto">
+					<Image
+						src={FourOhFour}
+						alt="404"
+						width={240}
+						height={240}
+						quality={70}
+					/>
+				</div>
+			</div>
+			<p class="mt-10">
+				You can go back to the <a href="/">home page</a> or contact me at
+				<a class="link link-hover link-primary" href="/contact">here</a
+				>.
+			</p>
+		</div>
+	</div>
+</Layout>
+
+<style>
+	@reference "../styles/global.css";
+
+	.icon-action-link {
+		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
+	}
+</style>
