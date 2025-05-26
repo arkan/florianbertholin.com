@@ -7,6 +7,8 @@ category: career
 draft: false
 ---
 
+![](./../../images/posts/heetch.jpg)
+
 After several years in Switzerland, during which I worked on enhancing email security with [Revamail](https://www.letemps.ch/economie/startup-vaudoise-revapost-veut-securiser-lenvoi-demails), I have decided that it is time for me to move on to something else.
 
 I am excited to announce that I will be joining [Heetch](https://www.heetch.com/) as their first Go engineer.
