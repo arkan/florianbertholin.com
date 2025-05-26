@@ -20,9 +20,9 @@ As time passed, I realized that I couldn't see myself returning to Heetch. There
 
 What did I learn from this experience? Burnout is terrible, and I wouldn't wish it on anyone. However, it was a wake-up call that helped me realize that I'm not invincible and that I need to listen to my body and be kind to it.
 
-I also discovered that I've been dealing with generalized anxiety disorder and ADHD(Attention Deficit Hyperactivity Disorder) since my teenage years.
+<!-- I also discovered that I've been dealing with generalized anxiety disorder and ADHD(Attention Deficit Hyperactivity Disorder) since my teenage years. -->
 
-Finally, I understood that being different is okay and not something to be ashamed of. I'm grateful for the opportunity to have worked with amazing people at Heetch over the years. I learned so much about myself, human relationships, and technical skills.
+<!-- Finally, I understood that being different is okay and not something to be ashamed of.--> I'm grateful for the opportunity to have worked with amazing people at Heetch over the years. I learned so much about myself, human relationships, and technical skills.
 
 As for what's next, I'm still figuring things out. I need more time to recover fully, and I'll probably look for a not-too-stressful role. I feel that I'm still vulnerable and need to take things slow.
 
