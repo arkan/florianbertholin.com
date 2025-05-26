@@ -1,5 +1,7 @@
 ---
-const { title, description } = Astro.props;
+import Seo from "./Seo.astro";
+
+const { title, description, image, frontmatter, robots } = Astro.props;
 ---
 
 <head>
@@ -7,17 +9,20 @@ const { title, description } = Astro.props;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link
+        rel="alternate"
+        type="application/rss+xml"
+        title="Florian Bertholin's Blog"
+        href={new URL("rss.xml", Astro.site)}
+    />
+
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta property="og:url" content="https://www.florianbertholin.com/" />
-    <meta property="og:site_name" content="Florian Bertholin" />
-    <meta property="og:title" content="Florian Bertholin" />
-    <meta property="og:locale" content="en" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Florian Bertholin" />
+
+    <Seo {title} {description} url={Astro.url} {image} {frontmatter} {robots} />
+
     <meta name="author" content="Florian Bertholin" />
     <link href="mailto:florian@bertholin.com" rel="me" />
     <link href="https://github.com/arkan" rel="me" />
