@@ -7,7 +7,7 @@ category: career
 draft: false
 ---
 
-After conducting several months of thorough research, I am thrilled to announce that I have accepted the position of Senior Engineering Manager of the Infrastructure team at [Livestorm](https://livestorm.co/), a leading video communication platform based in Europe.
+After conducting several months of thorough research, I am thrilled to announce that I have accepted the position of **Senior Engineering Manager of the Infrastructure team** at [Livestorm](https://livestorm.co/), a leading video communication platform based in Europe.
 
 Livestorm has recently raised [$30 million in Series B funding](https://livestorm.co/blog/livestorm-30-million-series-b).
 

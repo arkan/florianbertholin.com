@@ -1,5 +1,6 @@
 export const resume = {
-    title: "Engineering Leader & Mentor",
+    title: "Florian Bertholin's Resume",
+    subtitle: "Engineering Leader & Mentor",
     email: "florian@bertholin.com",
     location: "Annecy, France",
     locationLink: "https://www.google.fr/maps/place/Annecy/@44.65082,5.7967735,4.7z",
@@ -35,6 +36,7 @@ export const resume = {
     workExperiences: [
         {
             company: "Livestorm",
+            website: "https://livestorm.co",
             title: "Head of Engineering",
             startDate: "Dec 2022",
             endDate: "Dec 2024",
@@ -42,12 +44,19 @@ export const resume = {
             description: "Livestorm is a browser-based video conferencing software platform designed for webinars, virtual meetings, and online events. The platform supports up to 3,000 live attendees, offers various business features, and is particularly focused on facilitating remote and hybrid work environments.",
             items: [
                 {
-                    description: "",
-                }
+                    description: "Led a complete team reorg among engineers and teams",
+                },
+                {
+                    description: "Pushed a migration to Kubernetes to support the new architecture",
+                },
+                {
+                    description: "Pushed for an in-house monitoring and alerting system to replace Datadog",
+                },
             ]
         },
         {
             company: "Livestorm",
+            website: "https://livestorm.co",
             title: "Director of Engineering",
             startDate: "Apr 2022",
             endDate: "Dec 2022",
@@ -55,12 +64,16 @@ export const resume = {
             description: "",
             items: [
                 {
-                    description: "",
-                }
+                    description: "Doubled the number of engineers in the team",
+                },
+                {
+                    description: "Decided to migrate our monolith to a micro-services architecture and built a Go framework to support it",
+                },
             ]
         },
         {
             company: "Livestorm",
+            website: "https://livestorm.co",
             title: "Senior Engineering Manager",
             startDate: "Jan 2021",
             endDate: "Dec 2022",
@@ -68,12 +81,25 @@ export const resume = {
             description: "",
             items: [
                 {
-                    description: "",
-                }
+                    description: "Modernized and scaled the infrastructure to support the growth of the company on AWS",
+                },
+                {
+                    description: "Built a CI/CD pipeline using Buildkite to automate everything",
+                },
+                {
+                    description: "Build a Go CLI tool to manage the infrastructure and perform the daily operations",
+                },
+                {
+                    description: "Built a monitoring and alerting system with on calls using Datadog/Pagerduty",
+                },
+                {
+                    description: "Built a Data Pipeline to ingest data using Kafka",
+                },
             ]
         },
         {
             company: "Heetch",
+            website: "https://heetch.com",
             title: "Engineering Manager",
             startDate: "Jan 2018",
             endDate: "Dec 2020",
@@ -88,11 +114,12 @@ export const resume = {
                 },
                 {
                     description: "Managed, coached and empowered people",
-                }
+                },
             ]
         },
         {
             company: "Heetch",
+            website: "https://heetch.com",
             title: "Lead DevOps Engineer",
             startDate: "Jun 2015",
             endDate: "Jan 2018",
@@ -119,7 +146,7 @@ export const resume = {
                 },
                 {
                     description: "Continuously working on tooling and infra",
-                }
+                },
             ]
         },
         {
@@ -148,7 +175,7 @@ export const resume = {
             items: [
                 {
                     description: "I've been working mainly on the synchronization workflow between our servers and the remote services such as Facebook, Twitter, Box, Picasa, Google Docs and so on."
-                }
+                },
             ]
         },
         {
@@ -169,7 +196,7 @@ export const resume = {
                 },
                 {
                     description: "Worked a lot with JavaScript (Jquery with Ajax) and Ruby on Rails 3."
-                }
+                },
             ]
         },
         {
@@ -188,7 +215,7 @@ export const resume = {
                 },
                 {
                     description: "Developing a backup/restore tool (C#)"
-                }
+                },
             ]
         },
     ],

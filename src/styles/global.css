@@ -9,6 +9,15 @@
     @apply rounded-sm shadow-xl;
 }
 
+.prose a {
+    @apply link link-hover link-primary;
+}
+
+.rounded-avatar {
+    @apply rounded-full w-36 mt-0 mb-0 ring-primary ring-offset-base-100 ring-2 ring-offset-2;
+    @apply hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer;
+}
+
 .abc {
     color: red !important;
 }

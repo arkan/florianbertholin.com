@@ -4,16 +4,17 @@ import { Image } from "astro:assets";
 import Annecy from "../images/annecy.jpg";
 import Florian from "../images/florian2.jpeg";
 import { resume } from "../data/resume";
+import iconLink from "../images/icon-link.png";
 ---
 
 <Layout title="Now" description="What I am doing now?">
     <div class="text-center">
-        <h1 class="text-4xl mt-0 mb-0 font-extrabold">Resume</h1>
+        <h1 class="text-4xl mt-0 mb-0 font-extrabold">{resume.title}</h1>
 
         <h2
             class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
         >
-            {resume.title}
+            {resume.subtitle}
         </h2>
 
         <div class="mt-10">
@@ -23,7 +24,7 @@ import { resume } from "../data/resume";
                         <Image
                             src={Florian}
                             alt="Florian Bertholin"
-                            class="rounded-full w-36 mt-0 mb-0 ring-primary ring-offset-base-100 ring-2 ring-offset-2"
+                            class="rounded-avatar"
                         />
                     </div>
                     <!-- contact details -->
@@ -81,7 +82,26 @@ import { resume } from "../data/resume";
                                     <li class="pt-2">
                                         <p class="flex justify-between text-sm">
                                             <strong class="text-base">
-                                                {experience.company}
+                                                {experience.website ? (
+                                                    <a
+                                                        href={
+                                                            experience.website
+                                                        }
+                                                        target="_blank"
+                                                        class="flex link link-hover link-primary"
+                                                    >
+                                                        <span>
+                                                            {experience.company}
+                                                        </span>
+                                                        <Image
+                                                            src={iconLink}
+                                                            alt="icon-link"
+                                                            class="w-5 h-5 ml-1 mt-1"
+                                                        />
+                                                    </a>
+                                                ) : (
+                                                    experience.company
+                                                )}
                                             </strong>
                                             {experience.startDate}-
                                             {experience.endDate}
