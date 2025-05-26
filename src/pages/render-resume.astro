@@ -1,5 +1,5 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import ResumeLayout from "../layouts/ResumeLayout.astro";
 import { Image } from "astro:assets";
 import Annecy from "../images/annecy.jpg";
 import Florian from "../images/florian2.jpeg";
@@ -8,7 +8,7 @@ import iconLink from "../images/icon-link.png";
 import iconPDF from "../images/icon-pdf.png";
 ---
 
-<Layout title="Now" description="What I am doing now?">
+<ResumeLayout title="Now" description="What I am doing now?">
     <div class="text-center">
         <h1 class="text-4xl mt-0 mb-0 font-extrabold">{resume.title}</h1>
 
@@ -175,12 +175,10 @@ import iconPDF from "../images/icon-pdf.png";
             </div>
         </div>
     </div>
-</Layout>
+</ResumeLayout>
 
-<style>
-    @reference "../styles/global.css";
-
-    .icon-action-link {
-        @apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
-    }
-</style>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        window.print();
+    });
+</script>
