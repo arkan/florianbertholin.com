@@ -1,3 +1,7 @@
+---
+import navData from "../data/navData";
+---
+
 <nav class="bg-base-100 border-b border-base-300">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
@@ -10,30 +14,16 @@
                 </a>
             </div>
             <div class="flex space-x-8">
-                <a
-                    href="/posts"
-                    class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
-                >
-                    Blog
-                </a>
-                <a
-                    href="/now"
-                    class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
-                >
-                    Now
-                </a>
-                <a
-                    href="/resume"
-                    class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
-                >
-                    Resume
-                </a>
-                <a
-                    href="/contact"
-                    class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
-                >
-                    Contact
-                </a>
+                {
+                    navData.map((item) => (
+                        <a
+                            href={`${item.path}`}
+                            class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
+                        >
+                            {item.name}
+                        </a>
+                    ))
+                }
             </div>
         </div>
     </div>

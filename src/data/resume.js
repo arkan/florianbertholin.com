@@ -13,6 +13,9 @@ export const resume = {
         "Kubernetes",
         "Rails",
         "Docker",
+        "Leadership",
+        "Mentoring",
+        "Management",
 
     ],
     educations: [
