@@ -9,7 +9,7 @@ draft: false
 
 Hello! I’m Florian, a 28-year-old software engineering enthusiast living in the beautiful city of Geneva, Switzerland, where I’m fortunate to enjoy the stunning views of the lake. 🙂
 
-![](./../../images/geneva2.png)
+![](./../../images/posts/geneva.png)
 
 Before that, I graduated from a French engineering school in 2012, [Epitech](https://www.epitech.eu/).
 

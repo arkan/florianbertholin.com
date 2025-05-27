@@ -11,7 +11,7 @@ After conducting several months of thorough research, I am thrilled to announce 
 
 Livestorm has recently raised [$30 million in Series B funding](https://livestorm.co/blog/livestorm-30-million-series-b).
 
-![](./../../images/livestorm.jpg)
+![](./../../images/posts/livestorm.jpg)
 
 While the infrastructure team has already accomplished great things, there are still numerous exciting engineering challenges ahead that we can tackle together.
 
