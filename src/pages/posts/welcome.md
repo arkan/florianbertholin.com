@@ -2,7 +2,6 @@
 layout: ../../layouts/BlogLayout.astro
 title: 'Welcome'
 date: 2015-05-10
-description: "Welcome to my new site"
 category: website
 draft: false
 ---
