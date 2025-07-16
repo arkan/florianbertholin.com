@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogLayout.astro
 title: 'Welcome'
 date: 2015-05-10
-category: website
+tags: ["website"]
 draft: false
 ---
 

@@ -1,7 +1,11 @@
 const navData = [
     {
-        name: "Blog",
+        name: "Posts",
         path: "/posts/",
+    },
+    {
+        name: "Tags",
+        path: "/tags/",
     },
     {
         name: "Now",

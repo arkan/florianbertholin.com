@@ -2,7 +2,7 @@
 layout: ../../layouts/BlogLayout.astro
 title: "I'm Joining Heetch"
 date: 2015-06-01
-category: career
+tags: ["career"]
 draft: false
 ---
 

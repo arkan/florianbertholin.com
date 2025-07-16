@@ -3,9 +3,9 @@ import "../styles/global.css";
 
 import { formatDate } from "../js/utils";
 import Layout from "./Layout.astro";
-
+import { slugify } from "../js/utils";
 const { frontmatter } = Astro.props;
-const { title, description, date } = frontmatter;
+const { title, description, date, tags } = frontmatter;
 ---
 
 <Layout title={title} description={description}>
@@ -21,6 +21,20 @@ const { title, description, date } = frontmatter;
             >
             on {formatDate(date)}
         </p>
+
+        <div class="flex justify-center gap-2 mt-2">
+            {
+                tags &&
+                    tags.map((tag: string) => (
+                        <a
+                            href={`/tags/${slugify(tag)}`}
+                            class="px-2 py-1 text-sm rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors"
+                        >
+                            #{tag}
+                        </a>
+                    ))
+            }
+        </div>
 
         <div
             class="mt-10 prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"

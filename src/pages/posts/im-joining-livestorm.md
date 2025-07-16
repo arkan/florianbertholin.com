@@ -3,7 +3,7 @@ layout: ../../layouts/BlogLayout.astro
 title: "I'm joining Livestorm"
 date: 2021-01-18
 description: ""
-category: career
+tags: ["career"]
 draft: false
 ---
 

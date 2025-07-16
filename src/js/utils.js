@@ -11,6 +11,7 @@ export function formatBlogPosts(posts, {
     filterOutFuturePosts = true,
     sortByDate = true,
     limit = undefined,
+    tag = undefined,
 } = {}) {
 
     const filteredPosts = posts.reduce((acc, post) => {
@@ -20,6 +21,9 @@ export function formatBlogPosts(posts, {
 
         // filterOutFuturePosts if true
         if (filterOutFuturePosts && new Date(date) > new Date()) return acc;
+
+        // filter by tag if provided
+        if (tag && !post.frontmatter.tags.map((t) => slugify(t)).includes(tag)) return acc;
 
         // add post to acc
         acc.push(post)
@@ -39,7 +43,10 @@ export function formatBlogPosts(posts, {
         return filteredPosts.slice(0, limit);
     }
     return filteredPosts;
+}
 
+export function getTags(posts) {
+    return posts.map((post) => post.frontmatter.tags).flat().map((tag) => slugify(tag)).flat();
 }
 
 export function slugify(text) {

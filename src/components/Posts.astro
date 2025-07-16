@@ -1,0 +1,68 @@
+---
+import { formatDate } from "../js/utils";
+
+const { posts } = Astro.props;
+---
+
+<div class="mt-10 max-w-3xl mx-auto">
+    <section>
+        {
+            posts.map((post: any, i: number) => {
+                const currentYear = new Date(
+                    post.frontmatter.date,
+                ).getFullYear();
+                const prevYear =
+                    i > 0
+                        ? new Date(posts[i - 1].frontmatter.date).getFullYear()
+                        : null;
+                const showYearHeader = i === 0 || currentYear !== prevYear;
+                return (
+                    <>
+                        {showYearHeader && (
+                            <>
+                                <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8">
+                                    {currentYear}
+                                </h2>
+                                <hr class="w-36 border-dotted border-neutral-400" />
+                            </>
+                        )}
+                        <article class="mt-6 flex flex-row">
+                            <a
+                                class="pt-2 w-full transition group hover:bg-slate-400/20 hover:shadow-[0_0_15px_15px_rgba(0,0,0,0.5)] hover:shadow-slate-400/20 rounded-lg hover:scale-101"
+                                href={post.url}
+                            >
+                                <div>
+                                    <h3 class="flex items-center text-xl font-semibold">
+                                        <span class="decoration-darkly-500 group-hover:underline group-hover:underline-offset-2">
+                                            {post.frontmatter.title}
+                                        </span>
+                                    </h3>
+                                    <div class="text-sm text-neutral-500">
+                                        <div class="flex flex-row flex-wrap items-center">
+                                            <time
+                                                datetime={post.frontmatter.date}
+                                            >
+                                                {formatDate(
+                                                    post.frontmatter.date,
+                                                )}
+                                            </time>
+                                            <span class="px-2 text-darkly-500">
+                                                ·
+                                            </span>
+                                            <span title="Reading time">
+                                                {post.frontmatter.minutesRead}
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="pt-2 prose text-left prose-stone w-full max-w-prose line-clamp-5 md:line-clamp-4 hover:overflow-hidden text-neutral-600 md:text-neutral-500 hover:text-neutral-800">
+                                        {post.frontmatter.description}
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
+                    </>
+                );
+            })
+        }
+    </section>
+</div>

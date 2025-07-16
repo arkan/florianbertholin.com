@@ -3,7 +3,7 @@ layout: ../../layouts/BlogLayout.astro
 title: "Burnout and I'm leaving Heetch"
 date: 2020-08-31
 description: ""
-category: career
+tags: ["career"]
 draft: false
 ---
 
