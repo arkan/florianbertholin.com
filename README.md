@@ -1,34 +1,81 @@
-# Florian Bertholin's website
+# Florian Bertholin's Personal Website
 
-This is my personal website built with [Astro](https://astro.build).
+A personal website and blog built with [Astro](https://astro.build), featuring a clean design and modern web development practices.
+
+## Tech Stack
+
+- **Framework**: [Astro](https://astro.build) - Static site generator
+- **Styling**: [Tailwind CSS](https://tailwindcss.com) + [DaisyUI](https://daisyui.com)
+- **Analytics**: [Umami](https://umami.is) - Privacy-focused analytics
+- **Deployment**: GitHub Pages (automated)
 
 ## Features
 
-- ✨ Built with Astro for fast, modern web development
-- 📝 Blog posts with reading time estimation and auto-generated descriptions
-- 🎨 Styled with Tailwind CSS for responsive design
-- 🔍 SEO optimized with meta tags and JSON-LD
-- 🗺️ Automatic sitemap generation
-- 📱 Mobile-friendly
-- 📊 Markdown support with features like:
-  - Table of Contents generation
-  - GitHub Flavored Markdown
-  - Reading time estimation
-  - Auto-generated descriptions
+- Blog with Markdown support
+- Reading time estimation
+- Auto-generated table of contents
+- GitHub Flavored Markdown
+- Tag system for posts
+- RSS feed
+- Automatic sitemap generation
+- SEO optimized with meta tags and JSON-LD
+- Responsive design
+
+## Prerequisites
+
+This project uses [mise](https://mise.jdx.dev/) for managing tool versions.
+
+```bash
+# Install mise (macOS/Linux)
+curl https://mise.run | sh
+
+# Trust and install project tools
+mise trust
+mise install
+```
+
+## Getting Started
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The site will be available at `http://localhost:4321`.
 
 ## Commands
 
-All commands are run from the root of the project, from a terminal:
+| Command           | Action                                      |
+| :---------------- | :------------------------------------------ |
+| `npm install`     | Install dependencies                        |
+| `npm run dev`     | Start local dev server at `localhost:4321`  |
+| `npm run build`   | Build production site to `./dist/`          |
+| `npm run preview` | Preview build locally before deploying      |
+| `npm run astro`   | Run Astro CLI commands                      |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Project Structure
 
-## Deployments
+```
+├── src/
+│   ├── components/     # Reusable Astro components
+│   ├── layouts/        # Page layouts
+│   ├── pages/          # Pages and blog posts
+│   ├── styles/         # Global styles
+│   ├── js/             # Utility functions
+│   ├── data/           # Static data (site config, navigation)
+│   └── images/         # Image assets
+├── public/             # Static assets (favicon, robots.txt)
+├── .mise.toml          # Tool version management
+└── astro.config.mjs    # Astro configuration
+```
 
-All commits to `main` branch automatically deploys to Github pages within minutes.
+## Deployment
+
+All commits to the `main` branch are automatically deployed to GitHub Pages via GitHub Actions.
+
+## License
+
+MIT
