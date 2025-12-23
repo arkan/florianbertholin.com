@@ -6,11 +6,11 @@ tags: ["website"]
 draft: false
 ---
 
-Hello! I’m Florian, a 28-year-old software engineering enthusiast living in the beautiful city of Geneva, Switzerland, where I’m fortunate to enjoy the stunning views of the lake. 🙂
+Hello! I'm Florian, a software engineering enthusiast living in the beautiful city of Geneva, Switzerland, where I'm fortunate to enjoy the stunning views of the lake. 🙂
 
 ![](./../../images/posts/geneva.png)
 
-Before that, I graduated from a French engineering school in 2012, [Epitech](https://www.epitech.eu/).
+I graduated from a French engineering school in 2012, [Epitech](https://www.epitech.eu/).
 
 This blog will serve as a platform for me to share my passions, particularly in programming. Expect most of the content to revolve around Ruby on Rails and Go. If you’d like to connect, you can find how to reach me [here](/contact).
 
