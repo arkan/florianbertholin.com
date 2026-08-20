@@ -5,159 +5,265 @@ import Florian from "../images/florian3.png";
 ---
 
 <Layout title="Florian Bertholin" description="Engineering Leader & Mentor">
-	<div class="text-center">
-		<div class="flex justify-center">
-			<div class="mb-4">
-				<Image
-					src={Florian}
-					alt="Florian"
-					width={200}
-					quality={70}
-					class="rounded-avatar"
-				/>
-			</div>
-		</div>
+    <article class="home-page">
+        <section class="home-hero" aria-labelledby="home-title">
+            <div class="home-introduction">
+                <h1 id="home-title" class="home-title font-editorial">
+                    <span>Florian</span>
+                    <span>Bertholin</span>
+                </h1>
 
-		<!-- Main Heading -->
-		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Florian Bertholin</h1>
+                <p class="home-role">Engineering Leader &amp; Mentor</p>
 
-		<!-- Subheading -->
-		<h2
-			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
-		>
-			Engineering Leader & Mentor
-		</h2>
+                <p class="home-lead">
+                    I work where engineering leadership meets long-lived
+                    software: modernizing complex systems, building with Go,
+                    and helping engineers grow.
+                </p>
 
-		<div class="mt-2 mb-6">
-			<div
-				class="flex flex-wrap flex-row justify-center text-neutral-400 dark:text-neutral-500"
-			>
-				<a
-					class="icon-action-link"
-					style="will-change:transform"
-					href="mailto:florian@bertholin.com"
-					target="_blank"
-					aria-label="Email"
-					rel="me noopener noreferrer"
-					><span
-						class="icon relative inline-block px-1 align-text-bottom"
-					>
-						<svg
-							class="w-6 h-6"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 512 512"
-							><path
-								fill="currentcolor"
-								d="M207.8 20.73c-93.45 18.32-168.7 93.66-187 187.1-27.64 140.9 68.65 266.2 199.1 285.1 19.01 2.888 36.17-12.26 36.17-31.49l1e-4-.6631c0-15.74-11.44-28.88-26.84-31.24-84.35-12.98-149.2-86.13-149.2-174.2.0-102.9 88.61-185.5 193.4-175.4 91.54 8.869 158.6 91.25 158.6 183.2v16.16c0 22.09-17.94 40.05-40 40.05s-40.01-17.96-40.01-40.05v-120.1c0-8.847-7.161-16.02-16.01-16.02l-31.98.0036c-7.299.0-13.2 4.992-15.12 11.68-24.85-12.15-54.24-16.38-86.06-5.106-38.75 13.73-68.12 48.91-73.72 89.64-9.483 69.01 43.81 128 110.9 128 26.44.0 50.43-9.544 69.59-24.88 24 31.3 65.23 48.69 109.4 37.49C465.2 369.3 496 324.1 495.1 277.2V256.3c0-149.2-133.9-265.632-287.3-235.57zM239.1 304.3c-26.47.0-48-21.56-48-48.05s21.53-48.05 48-48.05 48 21.56 48 48.05-20.6 48.05-48 48.05z"
-							></path></svg
-						>
-					</span><a
-						class="icon-action-link"
-						href="https://github.com/arkan"
-						target="_blank"
-						aria-label="Github"
-						rel="me noopener noreferrer"
-						><span
-							class="icon relative inline-block px-1 align-text-bottom"
-							><svg
-								class="w-6 h-6"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 496 512"
-								><path
-									fill="currentcolor"
-									d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6.0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6.0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3.0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1.0-6.2-.3-40.4-.3-61.4.0.0-70 15-84.7-29.8.0.0-11.4-29.1-27.8-36.6.0.0-22.9-15.7 1.6-15.4.0.0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5.0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9.0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4.0 33.7-.3 75.4-.3 83.6.0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6.0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9.0-6.2-1.4-2.3-4-3.3-5.6-2z"
-								></path></svg
-							>
-						</span></a
-					><a
-						class="icon-action-link"
-						href="https://linkedin.com/in/fbertholin"
-						target="_blank"
-						aria-label="Linkedin"
-						rel="me noopener noreferrer"
-						><span
-							class="icon relative inline-block px-1 align-text-bottom"
-							><svg
-								class="w-6 h-6"
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 448 512"
-								><path
-									fill="currentcolor"
-									d="M416 32H31.9C14.3 32 0 46.5.0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6.0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3.0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2.0 38.5 17.3 38.5 38.5.0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6.0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2.0 79.7 44.3 79.7 101.9V416z"
-								></path></svg
-							></span
-						></a
-					>
-				</a>
-			</div>
-		</div>
+                <ul class="home-links" aria-label="Contact and social links">
+                    <li>
+                        <a href="mailto:florian@bertholin.com">Email</a>
+                    </li>
+                    <li>
+                        <a
+                            href="https://github.com/arkan"
+                            target="_blank"
+                            rel="me noopener noreferrer">GitHub</a
+                        >
+                    </li>
+                    <li>
+                        <a
+                            href="https://linkedin.com/in/fbertholin"
+                            target="_blank"
+                            rel="me noopener noreferrer">LinkedIn</a
+                        >
+                    </li>
+                </ul>
+            </div>
 
-		<div class="mt-10">
-			<div
-				class="prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"
-			>
-				<p>
-					I am a highly motivated individual with a strong passion for
-					technology and leadership.
-				</p>
+            <figure class="home-portrait">
+                <Image
+                    src={Florian}
+                    alt="Portrait of Florian Bertholin by the water"
+                    width={420}
+                    quality={85}
+                    sizes="(max-width: 767px) 208px, 280px"
+                    loading="eager"
+                />
+                <figcaption>Based in Annecy, France</figcaption>
+            </figure>
+        </section>
 
-				<p>
-					With over {new Date().getFullYear() - 2008} years of experience
-					in the industry, I have developed a deep understanding of how
-					technology can drive business success.
-				</p>
+        <section class="home-section" aria-labelledby="current-work-title">
+            <h2 id="current-work-title" class="font-editorial">
+                Modernizing a decades-old application.
+            </h2>
+            <div class="home-prose">
+                <p>
+                    These days, I’m working with Go, microservices, and
+                    infrastructure to bring a long-lived application forward.
+                </p>
+                <p>
+                    I’ve worked in technology since 2008, focusing on Go,
+                    microservice architectures, and infrastructure since 2013.
+                    That experience helps me connect technical decisions with
+                    real business needs.
+                </p>
+            </div>
+        </section>
 
-				<p>
-					Over the last {new Date().getFullYear() - 2013} years, <strong
-						>I have focused my efforts on Go, microservices
-						architectures, and infrastructure, and have become an
-						expert in these areas</strong
-					>. I am well-equipped to take on any challenge and drive
-					projects to success. Throughout my career, I have always
-					been eager to learn and improve myself, staying up-to-date
-					with the latest trends and best practices in the industry. I
-					am dedicated to delivering high-quality results for my team
-					and organization, and <strong
-						>I have a proven track record of achieving success in
-						every role I have held</strong
-					>.
-				</p>
-
-				<p>
-					These days, I am modernizing a decades-old application using
-					modern technologies (Go, microservices, infrastructure,
-					etc.).
-				</p>
-
-				<p>
-					In addition to my work, I am an active member of the
-					technology community. <strong
-						>I enjoy sharing my knowledge and experience with others</strong
-					> through writing and mentoring. I have written articles for
-					industry publications, reviewed several books, and mentored engineers,
-					helping them to grow in their careers.
-				</p>
-
-				<p>
-					If you would like to connect with me, you can find me on <a
-						href="https://linkedin.com/in/florianbertholin"
-						class="link link-hover link-primary">Linkedin</a
-					> or via <a
-						href="mailto:contact@florianbertholin.com"
-						class="link link-hover link-primary">Email</a
-					>. I am always open <strong
-						>to discussing new opportunities and collaborating</strong
-					> with others to achieve great things.
-				</p>
-			</div>
-		</div>
-	</div>
+        <section class="home-section" aria-labelledby="sharing-title">
+            <h2 id="sharing-title" class="font-editorial">
+                Sharing what I learn along the way.
+            </h2>
+            <div class="home-prose">
+                <p>
+                    Alongside my day-to-day work, I write, review technical
+                    books, and mentor engineers as they grow in their careers.
+                </p>
+                <p>
+                    If you’d like to compare notes on engineering leadership,
+                    system modernization, or mentoring, you can
+                    <a href="/posts/" class="site-text-link"
+                        >read my latest posts</a
+                    > or
+                    <a href="/contact/" class="site-text-link">get in touch</a>.
+                </p>
+            </div>
+        </section>
+    </article>
 </Layout>
 
 <style>
-	@reference "../styles/global.css";
+    .home-page {
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
 
-	.icon-action-link {
-		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
-	}
+    .home-hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(13rem, 0.65fr);
+        gap: clamp(2.5rem, 7vw, 5rem);
+        align-items: center;
+        min-height: min(38rem, calc(100vh - 10rem));
+        padding-block: clamp(2rem, 6vw, 4.5rem);
+    }
+
+    .home-title {
+        max-width: 8ch;
+        margin: 0;
+        color: var(--site-ink);
+        font-size: clamp(3.5rem, 8vw, 5.75rem);
+        font-weight: 600;
+        line-height: 0.9;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+    }
+
+    .home-title span {
+        display: block;
+    }
+
+    .home-role {
+        margin: 1.25rem 0 0;
+        color: var(--site-accent);
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.5;
+    }
+
+    .home-lead {
+        max-width: 36rem;
+        margin: 1.25rem 0 0;
+        color: var(--site-copy);
+        font-size: clamp(1.125rem, 2vw, 1.3125rem);
+        line-height: 1.55;
+        text-wrap: pretty;
+    }
+
+    .home-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0 1.5rem;
+        margin: 1.5rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .home-links a {
+        display: inline-flex;
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        align-items: center;
+        color: var(--site-ink);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        text-decoration-color: color-mix(in srgb, var(--site-accent) 45%, transparent);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+        transition: color 160ms ease-out;
+    }
+
+    .home-links a:hover {
+        color: var(--site-accent);
+        text-decoration-color: currentColor;
+    }
+
+    .home-portrait {
+        width: min(100%, 17.5rem);
+        margin: 0;
+        justify-self: end;
+    }
+
+    .home-portrait img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    .home-portrait figcaption {
+        margin-top: 0.75rem;
+        color: var(--site-muted);
+        font-size: 0.8125rem;
+        line-height: 1.5;
+    }
+
+    .home-section {
+        display: grid;
+        grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+        gap: clamp(2rem, 7vw, 5rem);
+        padding-block: clamp(3rem, 7vw, 5rem);
+        border-top: 1px solid var(--site-line);
+    }
+
+    .home-section h2 {
+        max-width: 13ch;
+        margin: 0;
+        color: var(--site-ink);
+        font-size: clamp(2rem, 4vw, 2.875rem);
+        font-weight: 600;
+        line-height: 1.04;
+        letter-spacing: -0.025em;
+        text-wrap: balance;
+    }
+
+    .home-prose {
+        max-width: 64ch;
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+    }
+
+    .home-prose p {
+        margin: 0;
+    }
+
+    .home-prose p + p {
+        margin-top: 1.25rem;
+    }
+
+    @media (max-width: 767px) {
+        .home-hero {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            min-height: auto;
+            padding-block: 1.5rem 3.25rem;
+        }
+
+        .home-introduction {
+            order: 2;
+        }
+
+        .home-portrait {
+            order: 1;
+            width: min(62vw, 13rem);
+            justify-self: center;
+        }
+
+        .home-title {
+            font-size: clamp(3.25rem, 16vw, 4.25rem);
+        }
+
+        .home-section {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .home-section h2 {
+            max-width: 16ch;
+        }
+
+        .home-prose {
+            font-size: 1rem;
+            line-height: 1.65;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .home-links a {
+            transition: none;
+        }
+    }
 </style>

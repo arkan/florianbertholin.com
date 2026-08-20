@@ -1,0 +1,103 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+    accent?: string;
+    headingId?: string;
+    layout?: "auto" | "split" | "stacked";
+}
+
+const {
+    title,
+    description,
+    accent,
+    headingId = "page-title",
+    layout = "auto",
+} = Astro.props;
+const fullTitle = [title, accent].filter(Boolean).join(" ");
+const isStacked = layout === "stacked" || (layout === "auto" && fullTitle.length > 10);
+---
+
+<header class:list={["page-header", { "is-stacked": isStacked }]}>
+    <h1 id={headingId} class="page-header-title font-editorial">
+        {title}
+        {accent && <span class="page-header-accent"> {accent}</span>}
+    </h1>
+
+    {
+        description && (
+            <p class="page-header-description">{description}</p>
+        )
+    }
+</header>
+
+<style>
+    .page-header {
+        display: grid;
+        grid-template-columns: minmax(12rem, 0.8fr) minmax(0, 1.2fr);
+        gap: clamp(2.5rem, 8vw, 5rem);
+        align-items: end;
+        padding-block: clamp(2rem, 6vw, 4.5rem);
+    }
+
+    .page-header.is-stacked {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .page-header-title {
+        margin: 0;
+        color: var(--site-ink);
+        font-size: clamp(4.25rem, 9vw, 5.75rem);
+        font-weight: 600;
+        line-height: 0.9;
+        letter-spacing: -0.035em;
+        text-wrap: balance;
+    }
+
+    .is-stacked .page-header-title {
+        max-width: 15ch;
+        font-size: clamp(3.5rem, 8vw, 5rem);
+        line-height: 0.95;
+        overflow-wrap: anywhere;
+    }
+
+    .page-header-accent {
+        color: var(--site-accent);
+    }
+
+    .page-header-description {
+        max-width: 34ch;
+        margin: 0 0 0.25rem;
+        color: var(--site-copy);
+        font-size: clamp(1.125rem, 2vw, 1.3125rem);
+        line-height: 1.5;
+        text-wrap: balance;
+    }
+
+    @media (max-width: 639px) {
+        .page-header,
+        .page-header.is-stacked {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            padding-block: 1.5rem 2.75rem;
+        }
+
+        .page-header-title {
+            max-width: 100%;
+            font-size: clamp(3.5rem, 17vw, 4.5rem);
+            line-height: 0.94;
+        }
+
+        .is-stacked .page-header-title {
+            max-width: 100%;
+            font-size: clamp(3rem, 14vw, 3.75rem);
+            line-height: 0.96;
+        }
+
+        .page-header-description {
+            max-width: 30ch;
+            font-size: 1.0625rem;
+        }
+    }
+</style>

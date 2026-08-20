@@ -1,44 +1,98 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import FourOhFour from "../images/404.png";
 ---
 
 <Layout title="404" description="Page not found">
-	<div class="text-center">
-		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Page not found</h1>
+    <article class="not-found-page" aria-labelledby="not-found-title">
+        <PageHeader
+            title="Page not found"
+            description="Oops, this page does not exist."
+            headingId="not-found-title"
+            layout="stacked"
+        />
 
-		<h2
-			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
-		>
-			Oops, this page does not exist.
-		</h2>
+        <div class="not-found-content">
+            <Image
+                src={FourOhFour}
+                alt="Illustrated 404 error displayed on a desktop computer"
+                width={280}
+                quality={85}
+                class="not-found-illustration"
+            />
 
-		<div class="mt-1">
-			<div class="text-gray-700">
-				<div class="w-60 mx-auto">
-					<Image
-						src={FourOhFour}
-						alt="404"
-						width={240}
-						height={240}
-						quality={70}
-					/>
-				</div>
-			</div>
-			<p class="mt-10">
-				You can go back to the <a href="/">home page</a> or contact me at
-				<a class="link link-hover link-primary" href="/contact">here</a
-				>.
-			</p>
-		</div>
-	</div>
+            <div class="not-found-copy">
+                <p>
+                    You can return to the home page or contact me if you
+                    expected to find something here.
+                </p>
+
+                <nav class="not-found-links" aria-label="Recovery options">
+                    <a class="site-text-link" href="/">Go to the home page</a>
+                    <a class="site-text-link" href="/contact/">Contact me</a>
+                </nav>
+            </div>
+        </div>
+    </article>
 </Layout>
 
 <style>
-	@reference "../styles/global.css";
+    .not-found-page {
+        width: 100%;
+        max-width: 48rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
 
-	.icon-action-link {
-		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
-	}
+    .not-found-content {
+        display: grid;
+        grid-template-columns: minmax(13rem, 17.5rem) minmax(0, 1fr);
+        gap: clamp(2.5rem, 8vw, 5rem);
+        align-items: center;
+        padding-top: 1rem;
+        border-top: 1px solid var(--site-line);
+    }
+
+    .not-found-illustration {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .not-found-copy {
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+    }
+
+    .not-found-copy p {
+        margin: 0;
+        text-wrap: pretty;
+    }
+
+    .not-found-links {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-top: 1.5rem;
+    }
+
+    @media (max-width: 639px) {
+        .not-found-content {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .not-found-illustration {
+            width: min(70vw, 15rem);
+            justify-self: center;
+        }
+
+        .not-found-copy {
+            font-size: 1rem;
+        }
+    }
 </style>

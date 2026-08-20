@@ -1,43 +1,246 @@
 ---
 import "../styles/global.css";
 
-import { formatDate } from "../js/utils";
 import Layout from "./Layout.astro";
-import { slugify } from "../js/utils";
+import { formatDate, slugify } from "../js/utils";
+
 const { frontmatter } = Astro.props;
 const { title, description, date, tags } = frontmatter;
 ---
 
 <Layout title={title} description={description}>
-    <div class="text-center">
-        <h1 class="text-4xl mt-0 mb-0 font-extrabold">{title}</h1>
+    <article class="blog-post" aria-labelledby="post-title">
+        <header class="post-header">
+            <h1 id="post-title" class="post-heading font-editorial">
+                {title}
+            </h1>
 
-        <p class="text-md mt-0 mb-0 font-normal text-neutral-500">
-            by
-            <a href="/contact" class="link link-hover link-primary"
-                >Florian Bertholin</a
-            >
-            on {formatDate(date)}
-        </p>
+            <p class="post-byline">
+                <span>By</span>
+                <a href="/contact/" class="site-text-link"
+                    >Florian Bertholin</a
+                >
+                <span aria-hidden="true">·</span>
+                <time datetime={date}>{formatDate(date)}</time>
+            </p>
 
-        <div class="flex justify-center gap-2 mt-2">
             {
-                tags &&
-                    tags.map((tag: string) => (
-                        <a
-                            href={`/tags/${slugify(tag)}`}
-                            class="px-2 py-1 text-sm rounded-full bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-colors"
-                        >
-                            #{tag}
-                        </a>
-                    ))
+                tags && (
+                    <ul class="post-tags" aria-label="Post tags">
+                        {tags.map((tag: string) => (
+                            <li>
+                                <a href={`/tags/${slugify(tag)}/`}>#{tag}</a>
+                            </li>
+                        ))}
+                    </ul>
+                )
             }
-        </div>
+        </header>
 
-        <div
-            class="mt-10 prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"
-        >
+        <div class="article-prose prose sm:prose-lg">
             <slot />
         </div>
-    </div>
+
+        <footer class="post-footer">
+            <a href="/posts/" class="site-text-link">Browse all posts</a>
+        </footer>
+    </article>
 </Layout>
+
+<style>
+    .blog-post {
+        width: 100%;
+        max-width: 48rem;
+        margin-inline: auto;
+        padding-block: clamp(1.5rem, 5vw, 4rem) 1rem;
+    }
+
+    .post-header {
+        padding-bottom: clamp(2.5rem, 6vw, 4rem);
+        border-bottom: 1px solid var(--site-line);
+    }
+
+    .post-heading {
+        max-width: 17ch;
+        margin: 0;
+        color: var(--site-ink);
+        font-size: clamp(3rem, 7vw, 4.75rem);
+        font-weight: 600;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
+    }
+
+    .post-byline {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.35rem 0.5rem;
+        align-items: baseline;
+        margin: 1.5rem 0 0;
+        color: var(--site-muted);
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    .post-byline span[aria-hidden="true"] {
+        color: var(--site-accent);
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 1rem;
+        margin: 1rem 0 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .post-tags a {
+        display: inline-flex;
+        min-height: 2.75rem;
+        align-items: center;
+        color: var(--site-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: underline;
+        text-decoration-color: transparent;
+        text-underline-offset: 0.2em;
+        transition:
+            color 180ms ease-out,
+            text-decoration-color 180ms ease-out;
+    }
+
+    .post-tags a:hover,
+    .post-tags a:focus-visible {
+        color: var(--site-accent-strong);
+        text-decoration-color: currentColor;
+    }
+
+    .article-prose {
+        max-width: 100%;
+        margin-top: clamp(2.5rem, 7vw, 4.5rem);
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+
+    .article-prose :global(p),
+    .article-prose :global(li) {
+        color: var(--site-copy);
+        text-wrap: pretty;
+    }
+
+    .article-prose :global(h2),
+    .article-prose :global(h3),
+    .article-prose :global(h4) {
+        font-family: "Newsreader", Georgia, "Times New Roman", serif;
+        color: var(--site-ink);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        text-wrap: balance;
+    }
+
+    .article-prose :global(h2) {
+        margin-top: 3.5rem;
+        font-size: clamp(2rem, 5vw, 2.75rem);
+        line-height: 1.05;
+    }
+
+    .article-prose :global(h3) {
+        margin-top: 2.75rem;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        line-height: 1.15;
+    }
+
+    .article-prose :global(a) {
+        color: var(--site-accent-strong);
+        font-weight: 500;
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--site-accent) 55%,
+            transparent
+        );
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.2em;
+    }
+
+    .article-prose :global(a:hover) {
+        text-decoration-color: currentColor;
+    }
+
+    .article-prose :global(strong) {
+        color: var(--site-ink);
+        font-weight: 600;
+    }
+
+    .article-prose :global(blockquote) {
+        margin-block: 2rem;
+        padding: 0.25rem 0 0.25rem 1.5rem;
+        border-left: 1px solid var(--site-accent);
+        color: var(--site-ink);
+        font-family: "Newsreader", Georgia, "Times New Roman", serif;
+        font-size: 1.375rem;
+        font-style: normal;
+        line-height: 1.4;
+    }
+
+    .article-prose :global(blockquote p) {
+        color: inherit;
+    }
+
+    .article-prose :global(img) {
+        width: 100%;
+        height: auto;
+        margin-block: 2.5rem;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    .article-prose :global(pre) {
+        border-radius: 0.75rem;
+        background: var(--site-ink);
+        color: var(--site-surface);
+    }
+
+    .article-prose :global(:not(pre) > code) {
+        border-radius: 0.25rem;
+        background: var(--site-line);
+        color: var(--site-ink);
+        font-weight: 500;
+    }
+
+    .article-prose :global(li::marker) {
+        color: var(--site-accent);
+    }
+
+    .article-prose :global(hr) {
+        border-color: var(--site-line);
+    }
+
+    .post-footer {
+        margin-top: clamp(3.5rem, 8vw, 6rem);
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--site-line);
+    }
+
+    @media (max-width: 639px) {
+        .blog-post {
+            padding-top: 1.5rem;
+        }
+
+        .post-heading {
+            font-size: clamp(2.75rem, 14vw, 3.75rem);
+        }
+
+        .article-prose {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .post-tags a {
+            transition: none;
+        }
+    }
+</style>

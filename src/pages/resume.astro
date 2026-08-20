@@ -1,186 +1,463 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
-import Annecy from "../images/annecy.jpg";
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Florian from "../images/florian3.png";
 import { resume } from "../data/resume";
-import iconLink from "../images/icon-link.png";
-import iconPDF from "../images/icon-pdf.png";
 ---
 
-<Layout title="Now" description="What I am doing now?">
-    <div class="text-center">
-        <h1 class="text-4xl mt-0 mb-0 font-extrabold">{resume.title}</h1>
+<Layout title={resume.title} description={resume.subtitle}>
+    <article class="resume-page" aria-labelledby="resume-title">
+        <PageHeader
+            title={resume.title}
+            description={resume.subtitle}
+            headingId="resume-title"
+            layout="stacked"
+        />
 
-        <h2
-            class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
-        >
-            {resume.subtitle}
-        </h2>
+        <div class="resume-layout">
+            <aside class="resume-sidebar" aria-label="Resume overview">
+                <Image
+                    src={Florian}
+                    alt="Portrait of Florian Bertholin by the water"
+                    width={220}
+                    quality={85}
+                    sizes="(max-width: 639px) 144px, 220px"
+                    class="resume-portrait"
+                />
 
-        <div class="mt-10">
-            <div class="flex flex-col lg:flex-row gap-x-10 mt-10">
-                <div class="w-full lg:w-2/6">
-                    <div class="flex flex-col items-center mb-8">
-                        <Image
-                            src={Florian}
-                            alt="Florian Bertholin"
-                            class="rounded-avatar"
-                        />
-                        <a href="/render-resume" target="_blank">
-                            <Image
-                                src={iconPDF}
-                                alt="icon-link"
-                                class="w-10 h-10 ml-1 mt-4 hover:scale-105 transition-transform"
-                            />
-                        </a>
-                    </div>
-                    <!-- contact details -->
+                <a
+                    href="/render-resume/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="resume-print-link site-text-link"
+                >
+                    Open printable resume
+                </a>
 
-                    <strong class="text-xl font-medium">Contact Details</strong>
-                    <ul class="mt-2 mb-10">
-                        <li class="px-2 mt-1">
-                            <strong class="mr-1">E-mail </strong>
-                            <a
-                                href={`mailto:${resume.email}`}
-                                class="block link link-hover link-primary"
-                                >{resume.email}</a
-                            >
-                        </li>
-                        <li class="px-2 mt-1">
-                            <strong class="mr-1">Location</strong>
-                            <a
-                                href={resume.locationLink}
-                                target="_blank"
-                                class="block link link-hover link-primary"
-                                >{resume.location}</a
-                            >
-                        </li>
+                <section class="resume-sidebar-section">
+                    <h2 class="resume-sidebar-title font-editorial">
+                        Contact
+                    </h2>
+                    <dl class="resume-details">
+                        <div>
+                            <dt>Email</dt>
+                            <dd>
+                                <a
+                                    href={`mailto:${resume.email}`}
+                                    class="site-text-link">{resume.email}</a
+                                >
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>Location</dt>
+                            <dd>
+                                <a
+                                    href={resume.locationLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="site-text-link"
+                                    >{resume.location}</a
+                                >
+                            </dd>
+                        </div>
+                    </dl>
+                </section>
+
+                <section class="resume-sidebar-section">
+                    <h2 class="resume-sidebar-title font-editorial">
+                        Main skills
+                    </h2>
+                    <ul class="resume-skills">
+                        {resume.skills?.map((skill) => <li>{skill}</li>)}
                     </ul>
+                </section>
+            </aside>
 
-                    <!-- skills -->
-                    <strong class="text-xl font-medium">Main skills</strong>
-                    <ul class="mt-2 mb-10">
+            <div class="resume-main">
+                <section class="resume-section" aria-labelledby="about-title">
+                    <h2 id="about-title" class="resume-section-title font-editorial">
+                        About
+                    </h2>
+                    <div class="resume-about">
+                        <Fragment set:html={resume.about} />
+                    </div>
+                </section>
+
+                <section class="resume-section" aria-labelledby="experience-title">
+                    <h2
+                        id="experience-title"
+                        class="resume-section-title font-editorial"
+                    >
+                        Work experience
+                    </h2>
+
+                    <ol class="experience-list">
                         {
-                            resume.skills?.map((skill) => (
-                                <li class="px-2 mt-1">{skill}</li>
+                            resume.workExperiences.map((experience) => (
+                                <li>
+                                    <article class="experience">
+                                        <header class="experience-header">
+                                            <div>
+                                                <h3 class="experience-company font-editorial">
+                                                    {experience.website ? (
+                                                        <a
+                                                            href={experience.website}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                        >
+                                                            {experience.company}
+                                                        </a>
+                                                    ) : (
+                                                        experience.company
+                                                    )}
+                                                </h3>
+                                                <p class="experience-role">
+                                                    {experience.title}
+                                                </p>
+                                            </div>
+
+                                            <div class="experience-meta">
+                                                <span>
+                                                    {experience.startDate} –{" "}
+                                                    {experience.endDate}
+                                                </span>
+                                                <span>{experience.location}</span>
+                                            </div>
+                                        </header>
+
+                                        {experience.description && (
+                                            <div class="experience-description">
+                                                <Fragment
+                                                    set:html={experience.description}
+                                                />
+                                            </div>
+                                        )}
+
+                                        {experience.items && (
+                                            <ul class="experience-items">
+                                                {experience.items.map((item) => (
+                                                    <li>{item.description}</li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </article>
+                                </li>
                             ))
                         }
-                    </ul>
-                </div>
+                    </ol>
+                </section>
 
-                <!-- info -->
-                <div class="w-full lg:w-4/6">
-                    <section>
-                        <!-- about me -->
-                        <h2 class="text-2xl pb-1 border-b font-semibold">
-                            About
-                        </h2>
-                        <p class="mt-4 text-xs">
-                            <Fragment set:html={resume.about} />
-                        </p>
-                    </section>
-                    <section>
-                        <!-- work experiences -->
-                        <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
-                            Work Experiences
-                        </h2>
-                        <ul class="mt-2">
-                            {
-                                resume.workExperiences.map((experience) => (
-                                    <li class="pt-2">
-                                        <p class="flex justify-between text-sm">
-                                            <strong class="text-base">
-                                                {experience.website ? (
-                                                    <a
-                                                        href={
-                                                            experience.website
-                                                        }
-                                                        target="_blank"
-                                                        class="flex link link-hover link-primary"
-                                                    >
-                                                        <span>
-                                                            {experience.company}
-                                                        </span>
-                                                        <Image
-                                                            src={iconLink}
-                                                            alt="icon-link"
-                                                            class="w-5 h-5 ml-1 mt-1"
-                                                        />
-                                                    </a>
-                                                ) : (
-                                                    experience.company
-                                                )}
-                                            </strong>
-                                            {experience.startDate}-
-                                            {experience.endDate}
-                                        </p>
-                                        <p class="flex justify-between text-base">
-                                            {experience.title}
-                                            <small>{experience.location}</small>
-                                        </p>
-                                        <div class="text-justify text-xs">
-                                            <Fragment
-                                                set:html={
-                                                    experience.description
-                                                }
-                                            />
-                                            <ul
-                                                class="list-disc list-outside pl-4"
-                                                class:list={[
-                                                    {
-                                                        "mt-4": experience.description,
-                                                    },
-                                                ]}
-                                            >
-                                                {experience.items?.map(
-                                                    (item) => (
-                                                        <li>
-                                                            {item.description}
-                                                        </li>
-                                                    ),
-                                                )}
-                                            </ul>
-                                        </div>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </section>
-                    <section>
-                        <!-- education -->
-                        <h2 class="text-2xl mt-6 pb-1 border-b font-semibold">
-                            Education
-                        </h2>
-                        <ul class="mt-2">
-                            {
-                                resume.educations.map((education) => (
-                                    <li class="pt-2">
-                                        <p class="flex justify-between text-xs">
-                                            <strong class="text-base">
-                                                {education.school}
-                                            </strong>
-                                            {education.startDate}-
-                                            {education.endDate}
-                                        </p>
-                                        <p class="flex justify-between text-xs">
-                                            {education.degree}
-                                        </p>
-                                    </li>
-                                ))
-                            }
-                        </ul>
-                    </section>
-                </div>
+                <section class="resume-section" aria-labelledby="education-title">
+                    <h2
+                        id="education-title"
+                        class="resume-section-title font-editorial"
+                    >
+                        Education
+                    </h2>
+
+                    <ol class="education-list">
+                        {
+                            resume.educations.map((education) => (
+                                <li>
+                                    <div>
+                                        <h3 class="education-school font-editorial">
+                                            {education.school}
+                                        </h3>
+                                        <p>{education.degree}</p>
+                                    </div>
+                                    <span class="education-dates">
+                                        {education.startDate} – {education.endDate}
+                                    </span>
+                                </li>
+                            ))
+                        }
+                    </ol>
+                </section>
             </div>
         </div>
-    </div>
+    </article>
 </Layout>
 
 <style>
-    @reference "../styles/global.css";
+    .resume-page {
+        width: 100%;
+        max-width: 56rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
 
-    .icon-action-link {
-        @apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
+    .resume-layout {
+        display: grid;
+        grid-template-columns: 13.75rem minmax(0, 1fr);
+        gap: clamp(3rem, 8vw, 6rem);
+        align-items: start;
+        padding-top: clamp(2rem, 5vw, 3.5rem);
+        border-top: 1px solid var(--site-line);
+    }
+
+    .resume-portrait {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    .resume-print-link {
+        display: inline-flex;
+        min-height: 2.75rem;
+        align-items: center;
+        margin-top: 1rem;
+        font-size: 0.875rem;
+    }
+
+    .resume-sidebar-section {
+        margin-top: 2.25rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--site-line);
+    }
+
+    .resume-sidebar-title {
+        margin: 0;
+        color: var(--site-ink);
+        font-size: 1.5rem;
+        font-weight: 600;
+        line-height: 1.1;
+    }
+
+    .resume-details {
+        margin: 1.25rem 0 0;
+    }
+
+    .resume-details div + div {
+        margin-top: 1.25rem;
+    }
+
+    .resume-details dt {
+        color: var(--site-muted);
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        line-height: 1.4;
+        text-transform: uppercase;
+    }
+
+    .resume-details dd {
+        margin: 0.25rem 0 0;
+        color: var(--site-copy);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+    .resume-skills {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem 1rem;
+        margin: 1.25rem 0 0;
+        padding: 0;
+        color: var(--site-copy);
+        font-size: 0.875rem;
+        line-height: 1.5;
+        list-style: none;
+    }
+
+    .resume-section + .resume-section {
+        margin-top: clamp(4rem, 8vw, 6rem);
+    }
+
+    .resume-section-title {
+        margin: 0;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--site-line);
+        color: var(--site-ink);
+        font-size: clamp(2rem, 4vw, 2.75rem);
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.02em;
+    }
+
+    .resume-about {
+        margin-top: 1.5rem;
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+    }
+
+    .experience-list,
+    .education-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .experience-list > li {
+        padding-block: 2rem;
+        border-bottom: 1px solid var(--site-line);
+    }
+
+    .experience-header {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.5rem;
+        align-items: start;
+    }
+
+    .experience-company {
+        margin: 0;
+        color: var(--site-ink);
+        font-size: 1.75rem;
+        font-weight: 600;
+        line-height: 1.1;
+    }
+
+    .experience-company a {
+        color: inherit;
+        text-decoration-color: color-mix(
+            in srgb,
+            var(--site-accent) 45%,
+            transparent
+        );
+        text-underline-offset: 0.2em;
+    }
+
+    .experience-company a:hover {
+        color: var(--site-accent-strong);
+        text-decoration-color: currentColor;
+    }
+
+    .experience-role {
+        margin: 0.375rem 0 0;
+        color: var(--site-copy);
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+
+    .experience-meta {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 0.25rem;
+        color: var(--site-muted);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.4;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    .experience-description {
+        margin-top: 1.25rem;
+        color: var(--site-muted);
+        font-size: 0.875rem;
+        line-height: 1.65;
+    }
+
+    .experience-description :global(a) {
+        color: var(--site-accent-strong);
+        text-underline-offset: 0.2em;
+    }
+
+    .experience-items {
+        margin: 1rem 0 0;
+        padding-left: 1.25rem;
+        color: var(--site-copy);
+        font-size: 0.875rem;
+        line-height: 1.6;
+    }
+
+    .experience-items li::marker {
+        color: var(--site-accent);
+    }
+
+    .education-list li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 1.5rem;
+        align-items: start;
+        padding-block: 1.5rem;
+        border-bottom: 1px solid var(--site-line);
+    }
+
+    .education-school {
+        margin: 0;
+        color: var(--site-ink);
+        font-size: 1.375rem;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+
+    .education-list p {
+        margin: 0.375rem 0 0;
+        color: var(--site-copy);
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    .education-dates {
+        color: var(--site-muted);
+        font-size: 0.75rem;
+        font-variant-numeric: tabular-nums;
+        line-height: 1.4;
+        white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+        .resume-layout {
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        .resume-sidebar {
+            display: grid;
+            grid-template-columns: 9rem minmax(0, 1fr);
+            gap: 0 2rem;
+            align-items: start;
+        }
+
+        .resume-print-link {
+            grid-column: 1;
+        }
+
+        .resume-sidebar-section {
+            grid-column: 2;
+            margin-top: 0;
+        }
+
+        .resume-sidebar-section + .resume-sidebar-section {
+            margin-top: 2rem;
+        }
+    }
+
+    @media (max-width: 519px) {
+        .resume-sidebar {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .resume-portrait {
+            width: 9rem;
+        }
+
+        .resume-sidebar-section,
+        .resume-print-link {
+            grid-column: 1;
+        }
+
+        .resume-sidebar-section {
+            margin-top: 2rem;
+        }
+
+        .experience-header,
+        .education-list li {
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+        }
+
+        .experience-meta {
+            align-items: flex-start;
+            text-align: left;
+        }
     }
 </style>

@@ -1,47 +1,95 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Annecy from "../images/annecy.jpg";
 ---
 
 <Layout title="Now" description="What I am doing now?">
-	<div class="text-center">
-		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Now</h1>
+    <article class="now-page" aria-labelledby="now-title">
+        <PageHeader
+            title="Now"
+            description="What I am doing now?"
+            headingId="now-title"
+            layout="split"
+        />
 
-		<h2
-			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
-		>
-			What I am doing now?
-		</h2>
+        <div class="now-story">
+            <p class="now-lead">
+                I’m currently living in <strong>Annecy, France</strong>, where
+                I’m working remotely to modernize a decades-old application
+                using modern technologies such as Go, microservices,
+                infrastructure, etc.
+            </p>
 
-		<div class="mt-10">
-			<div
-				class="prose prose-lg text-gray-700 space-y-6 text-justify mx-auto"
-			>
-				<p>
-					I’m currently living in <strong>Annecy, France</strong>,
-					where I’m working remotely to modernize a decades-old
-					application using modern technologies such as Go,
-					microservices, infrastructure, etc.
-				</p>
-				<Image
-					src={Annecy}
-					alt="Annecy"
-					width={1000}
-					height={1000}
-					quality={70}
-				/>
+            <figure class="now-figure">
+                <Image
+                    src={Annecy}
+                    alt="The Thiou river running through Annecy's old town"
+                    width={1000}
+                    quality={85}
+                    sizes="(max-width: 767px) calc(100vw - 2rem), 768px"
+                />
+            </figure>
 
-				<p>I'm also a proud father of a beautiful daughter. ☺️</p>
-			</div>
-		</div>
-	</div>
+            <p>I’m also a proud father of a beautiful daughter. ☺️</p>
+        </div>
+    </article>
 </Layout>
 
 <style>
-	@reference "../styles/global.css";
+    .now-page {
+        width: 100%;
+        max-width: 48rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
 
-	.icon-action-link {
-		@apply px-1 transition-transform hover:scale-125 text-neutral-500 hover:text-primary;
-	}
+    .now-story {
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.7;
+    }
+
+    .now-story p {
+        max-width: 66ch;
+        margin: 0;
+        text-wrap: pretty;
+    }
+
+    .now-story p + p {
+        margin-top: 1.5rem;
+    }
+
+    .now-lead {
+        font-size: clamp(1.125rem, 2vw, 1.3125rem);
+        line-height: 1.65;
+    }
+
+    .now-story strong {
+        color: var(--site-ink);
+        font-weight: 600;
+    }
+
+    .now-figure {
+        margin: clamp(2rem, 5vw, 3rem) 0;
+    }
+
+    .now-figure img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    @media (max-width: 639px) {
+        .now-story {
+            font-size: 1rem;
+        }
+
+        .now-lead {
+            font-size: 1.0625rem;
+        }
+    }
 </style>

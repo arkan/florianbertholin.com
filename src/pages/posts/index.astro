@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { formatBlogPosts } from "../../js/utils";
+import PageHeader from "../../components/PageHeader.astro";
 import Posts from "../../components/Posts.astro";
+import { formatBlogPosts } from "../../js/utils";
 
 const allPosts = await Astro.glob("./*.md");
 const formattedPosts = formatBlogPosts(allPosts);
@@ -11,15 +12,23 @@ const formattedPosts = formatBlogPosts(allPosts);
     title="Blog"
     description="My thoughts on software engineering, leadership, and life"
 >
-    <div class="text-center">
-        <h1 class="text-4xl mt-0 mb-0 font-extrabold">Posts</h1>
+    <article class="posts-page" aria-labelledby="posts-title">
+        <PageHeader
+            title="Posts"
+            description="My thoughts on software engineering, leadership, and life"
+            headingId="posts-title"
+            layout="split"
+        />
 
-        <h2 class="text-xl mt-0 mb-0 font-normal text-neutral-500">
-            My thoughts on software engineering, leadership, and life
-        </h2>
-
-        <div class="mt-10 max-w-3xl mx-auto">
-            <Posts posts={formattedPosts} />
-        </div>
-    </div>
+        <Posts posts={formattedPosts} />
+    </article>
 </Layout>
+
+<style>
+    .posts-page {
+        width: 100%;
+        max-width: 52rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
+</style>

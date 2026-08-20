@@ -1,7 +1,8 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { formatBlogPosts, slugify, getTags } from "../../js/utils";
+import PageHeader from "../../components/PageHeader.astro";
 import Posts from "../../components/Posts.astro";
+import { formatBlogPosts, slugify, getTags } from "../../js/utils";
 
 export async function getStaticPaths() {
     const allPosts = await Astro.glob("./../posts/*.md");
@@ -9,11 +10,9 @@ export async function getStaticPaths() {
 
     const tags = getTags(formattedPosts);
     const uniqueTags = [...new Set(tags)];
-    const paths = uniqueTags.map((tag) => ({
+    return uniqueTags.map((tag) => ({
         params: { tag: slugify(tag) },
     }));
-
-    return paths;
 }
 
 const { tag } = Astro.params;
@@ -22,18 +21,27 @@ const formattedPosts = formatBlogPosts(allPosts, { tag });
 ---
 
 <Layout
-    title="Blog"
+    title={`Blog posts about #${tag}`}
     description="My thoughts on software engineering, leadership, and life"
 >
-    <div class="text-center">
-        <h1 class="text-4xl mt-0 mb-0 font-extrabold">
-            Blog posts about <span class="text-primary">#{tag}</span>
-        </h1>
-
-        <h2 class="text-xl mt-0 mb-0 font-normal text-neutral-500">
-            My thoughts on software engineering, leadership, and life
-        </h2>
+    <article class="tag-page" aria-labelledby="tag-title">
+        <PageHeader
+            title="Blog posts about"
+            accent={`#${tag}`}
+            description="My thoughts on software engineering, leadership, and life"
+            headingId="tag-title"
+            layout="stacked"
+        />
 
         <Posts posts={formattedPosts} />
-    </div>
+    </article>
 </Layout>
+
+<style>
+    .tag-page {
+        width: 100%;
+        max-width: 52rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
+</style>

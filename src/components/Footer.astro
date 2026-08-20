@@ -1,15 +1,47 @@
-<footer class="bg-base-100 border-t border-base-300 h-20">
-    <div class="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-        <div class="text-center">
-            <p class="text-sm text-neutral/80">
-                © {new Date().getFullYear()} - Florian Bertholin. Sources available
-                at
-                <a
-                    href="https://github.com/arkan/florianbertholin.com"
-                    class="text-blue-600 hover:text-blue-500 font-medium"
-                    >GitHub</a
-                >.
-            </p>
-        </div>
+<footer class="site-footer">
+    <div class="site-footer-inner">
+        <p>© {new Date().getFullYear()} Florian Bertholin</p>
+        <a
+            href="https://github.com/arkan/florianbertholin.com"
+            class="site-text-link"
+        >
+            Source on GitHub
+        </a>
     </div>
 </footer>
+
+<style>
+    .site-footer {
+        border-top: 1px solid var(--site-line);
+        background: var(--site-surface);
+    }
+
+    .site-footer-inner {
+        display: flex;
+        width: 100%;
+        max-width: var(--site-container);
+        margin-inline: auto;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1.75rem var(--site-gutter);
+        color: var(--site-muted);
+        font-size: 0.8125rem;
+        line-height: 1.5;
+    }
+
+    .site-footer p {
+        margin: 0;
+    }
+
+    .site-footer a {
+        width: fit-content;
+    }
+
+    @media (min-width: 640px) {
+        .site-footer-inner {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+</style>

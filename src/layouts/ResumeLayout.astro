@@ -1,9 +1,7 @@
 ---
 import "../styles/global.css";
 
-import Navbar from "../components/Navbar.astro";
 import Head from "../components/Head.astro";
-import Footer from "../components/Footer.astro";
 
 export interface Props {
     title: string;
@@ -16,11 +14,32 @@ const { title, description = "Engineering Leader & Mentor" } = Astro.props;
 <!doctype html>
 <html lang="en">
     <Head {title} {description} />
-    <body class="bg-base-200/50 text-slate-900 min-h-screen flex flex-col">
-        <!-- Main Content -->
+    <body class="resume-document min-h-screen flex flex-col">
         <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <slot />
         </main>
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="cccb56da-d9ba-4e75-8529-6288cf4dc135"></script>
+        <script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id="cccb56da-d9ba-4e75-8529-6288cf4dc135"
+        ></script>
     </body>
 </html>
+
+<style is:global>
+    body.resume-document {
+        background: #fff;
+        color: #202522;
+    }
+
+    @media print {
+        @page {
+            margin: 0.4in;
+        }
+
+        body.resume-document main {
+            max-width: none;
+            padding: 0;
+        }
+    }
+</style>

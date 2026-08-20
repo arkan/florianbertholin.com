@@ -1,68 +1,313 @@
 ---
 import navData from "../data/navData";
+
+const normalizePath = (path: string) => {
+    if (path === "/") return path;
+    return `${path.replace(/\/+$/, "")}/`;
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+const isCurrentPage = (path: string) => currentPath === normalizePath(path);
+const isActiveSection = (path: string) => {
+    const normalizedPath = normalizePath(path);
+    return normalizedPath === "/"
+        ? isCurrentPage(path)
+        : currentPath.startsWith(normalizedPath);
+};
 ---
 
-<nav class="bg-base-100 border-b border-base-300">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-            <div class="flex-shrink-0">
-                <a
-                    href="/"
-                    class="text-xl font-medium text-neutral hover:underline hover:decoration-2 hover:underline-offset-2"
+<nav class="site-navigation" aria-label="Primary navigation">
+    <div class="site-navigation-inner">
+        <a
+            href="/"
+            class="site-wordmark font-editorial"
+            aria-current={isCurrentPage("/") ? "page" : undefined}
+        >
+            Florian Bertholin
+        </a>
+
+        <div class="desktop-navigation">
+            {
+                navData.map((item) => (
+                    <a
+                        href={item.path}
+                        class:list={[
+                            "site-navigation-link",
+                            { "is-active": isActiveSection(item.path) },
+                        ]}
+                        aria-current={isCurrentPage(item.path) ? "page" : undefined}
+                    >
+                        {item.name}
+                    </a>
+                ))
+            }
+        </div>
+
+        <details class="mobile-navigation" data-mobile-navigation>
+            <summary aria-label="Navigation menu">
+                <svg
+                    class="menu-icon menu-icon-open"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
                 >
-                    Florian Bertholin
-                </a>
-            </div>
-            <div class="hidden md:flex space-x-1 md:space-x-8">
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.75"
+                        d="M4 7h16M4 12h16M4 17h10"
+                    ></path>
+                </svg>
+                <svg
+                    class="menu-icon menu-icon-close"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="1.75"
+                        d="m6 6 12 12M18 6 6 18"
+                    ></path>
+                </svg>
+            </summary>
+
+            <ul class="mobile-navigation-panel">
+                <li>
+                    <a
+                        href="/"
+                        class:list={[
+                            "mobile-navigation-link",
+                            { "is-active": isCurrentPage("/") },
+                        ]}
+                    >
+                        Home
+                    </a>
+                </li>
                 {
                     navData.map((item) => (
-                        <a
-                            href={`${item.path}`}
-                            class="text-neutral/80 hover:text-neutral text-sm font-medium hover:underline hover:decoration-2 hover:underline-offset-2"
-                        >
-                            {item.name}
-                        </a>
+                        <li>
+                            <a
+                                href={item.path}
+                                class:list={[
+                                    "mobile-navigation-link",
+                                    { "is-active": isActiveSection(item.path) },
+                                ]}
+                                aria-current={isCurrentPage(item.path)
+                                    ? "page"
+                                    : undefined}
+                            >
+                                {item.name}
+                            </a>
+                        </li>
                     ))
                 }
-            </div>
-            <div class="flex md:hidden space-x-1 lg:space-x-8">
-                <div class="dropdown">
-                    <div
-                        tabindex="0"
-                        role="button"
-                        class="btn btn-ghost btn-circle"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h7"></path>
-                        </svg>
-                    </div>
-                    <ul
-                        tabindex="0"
-                        class="menu menu-lg dropdown-content bg-base-100 rounded-box z-1 mt-3 w-30 p-2 shadow right-0"
-                    >
-                        <li>
-                            <a href="/">Home</a>
-                        </li>
-                        {
-                            navData.map((item) => (
-                                <li>
-                                    <a href={`${item.path}`}>{item.name}</a>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-            </div>
-        </div>
+            </ul>
+        </details>
     </div>
 </nav>
+
+<script>
+    const closeMobileNavigation = (restoreFocus = false) => {
+        document
+            .querySelectorAll<HTMLDetailsElement>("[data-mobile-navigation][open]")
+            .forEach((navigation) => {
+                navigation.open = false;
+                if (restoreFocus) {
+                    navigation.querySelector("summary")?.focus();
+                }
+            });
+    };
+
+    document.addEventListener("pointerdown", (event) => {
+        if (!(event.target instanceof Node)) return;
+
+        document
+            .querySelectorAll<HTMLDetailsElement>("[data-mobile-navigation][open]")
+            .forEach((navigation) => {
+                if (!navigation.contains(event.target as Node)) {
+                    navigation.open = false;
+                }
+            });
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+            closeMobileNavigation(true);
+        }
+    });
+
+    document.addEventListener("astro:before-swap", () => {
+        closeMobileNavigation();
+    });
+</script>
+
+<style>
+    .site-navigation {
+        border-bottom: 1px solid var(--site-line);
+        background: var(--site-surface);
+    }
+
+    .site-navigation-inner {
+        display: flex;
+        min-height: 4.5rem;
+        width: 100%;
+        max-width: var(--site-container);
+        margin-inline: auto;
+        align-items: center;
+        justify-content: space-between;
+        padding-inline: var(--site-gutter);
+    }
+
+    .site-wordmark {
+        color: var(--site-ink);
+        font-size: 1.375rem;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+    }
+
+    .desktop-navigation {
+        display: none;
+        align-items: center;
+        gap: 1.75rem;
+    }
+
+    .site-navigation-link {
+        position: relative;
+        display: inline-flex;
+        min-width: 2.75rem;
+        min-height: 2.75rem;
+        align-items: center;
+        justify-content: center;
+        color: var(--site-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 160ms ease-out;
+    }
+
+    .site-navigation-link:hover,
+    .site-navigation-link.is-active {
+        color: var(--site-ink);
+    }
+
+    .site-navigation-link::after {
+        position: absolute;
+        right: 0;
+        bottom: 0.25rem;
+        left: 0;
+        height: 2px;
+        background: var(--site-accent);
+        content: "";
+        opacity: 0;
+        transform: scaleX(0.7);
+        transition:
+            opacity 160ms ease-out,
+            transform 160ms ease-out;
+    }
+
+    .site-navigation-link:hover::after,
+    .site-navigation-link.is-active::after {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+
+    .mobile-navigation {
+        position: relative;
+    }
+
+    .mobile-navigation > summary {
+        display: grid;
+        width: 2.75rem;
+        height: 2.75rem;
+        cursor: pointer;
+        list-style: none;
+        place-items: center;
+        border-radius: 9999px;
+        color: var(--site-ink);
+        transition: background-color 160ms ease-out;
+    }
+
+    .mobile-navigation > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    .mobile-navigation > summary:hover,
+    .mobile-navigation[open] > summary {
+        background: color-mix(in srgb, var(--site-line) 55%, transparent);
+    }
+
+    .menu-icon {
+        width: 1.375rem;
+        height: 1.375rem;
+    }
+
+    .menu-icon-close {
+        display: none;
+    }
+
+    .mobile-navigation[open] .menu-icon-open {
+        display: none;
+    }
+
+    .mobile-navigation[open] .menu-icon-close {
+        display: block;
+    }
+
+    .mobile-navigation-panel {
+        position: absolute;
+        z-index: 20;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        width: 11rem;
+        margin: 0;
+        padding: 0.375rem;
+        border: 1px solid var(--site-line);
+        border-radius: 0.75rem;
+        background: var(--site-surface);
+        list-style: none;
+    }
+
+    .mobile-navigation-link {
+        display: flex;
+        min-height: 2.75rem;
+        align-items: center;
+        padding-inline: 0.875rem;
+        border-radius: 0.5rem;
+        color: var(--site-copy);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .mobile-navigation-link:hover,
+    .mobile-navigation-link.is-active {
+        background: color-mix(in srgb, var(--site-line) 48%, transparent);
+        color: var(--site-accent-strong);
+    }
+
+    @media (min-width: 768px) {
+        .desktop-navigation {
+            display: flex;
+        }
+
+        .mobile-navigation {
+            display: none;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .site-navigation-link,
+        .site-navigation-link::after,
+        .mobile-navigation > summary {
+            transition: none;
+        }
+    }
+</style>

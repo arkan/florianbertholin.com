@@ -1,65 +1,135 @@
 ---
-import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import PageHeader from "../components/PageHeader.astro";
 import Florian from "../images/florian3.png";
 import Annecy2 from "../images/annecy2.png";
 ---
 
 <Layout title="Contact" description="Get in touch with me">
-	<div class="text-center">
-		<h1 class="text-4xl mt-0 mb-0 font-extrabold">Contact</h1>
+    <article class="contact-page" aria-labelledby="contact-title">
+        <PageHeader
+            title="Contact"
+            description="Get in touch with me"
+            headingId="contact-title"
+            layout="split"
+        />
 
-		<h2
-			class="text-xl mt-0 mb-0 font-normal text-neutral-500 dark:text-neutral-400"
-		>
-			Get in touch with me
-		</h2>
+        <section class="contact-introduction">
+            <Image
+                src={Florian}
+                alt="Portrait of Florian Bertholin by the water"
+                width={180}
+                quality={85}
+                sizes="(max-width: 639px) 128px, 180px"
+                class="contact-portrait"
+            />
 
-		<div class="mt-10">
-			<div class="flex justify-center">
-				<Image
-					src={Florian}
-					alt="Florian"
-					width={144}
-					height={144}
-					quality={70}
-					class="rounded-avatar"
-				/>
-			</div>
-			<div
-				class="prose prose-lg text-gray-700 space-y-6 text-justify mx-auto mt-10"
-			>
-				<p>
-					I’m always eager to hear from readers, whether it’s feedback
-					on the blog or just a quick hello. You can reach me directly
-					at <a
-						class="link link-hover link-primary"
-						href="mailto:florian@bertholin.com"
-						>florian@bertholin.com</a
-					>.
-				</p>
+            <div class="contact-copy">
+                <p>
+                    I’m always eager to hear from readers, whether it’s
+                    feedback on the blog or just a quick hello. You can reach
+                    me directly at
+                    <a
+                        class="site-text-link"
+                        href="mailto:florian@bertholin.com"
+                        >florian@bertholin.com</a
+                    >.
+                </p>
 
-				<p>
-					You can also connect with me on
-					<a
-						class="link link-hover link-primary"
-						href="https://linkedin.com/in/fbertholin">Linkedin</a
-					> and follow my work on
-					<a
-						class="link link-hover link-primary"
-						href="https://github.com/arkan">Github</a
-					>.
-				</p>
-				<div class="flex justify-center">
-					<Image
-						src={Annecy2}
-						alt="Annecy"
-						width={1000}
-						height={1000}
-						quality={70}
-					/>
-				</div>
-			</div>
-		</div>
-	</div>
+                <p>
+                    You can also connect with me on
+                    <a
+                        class="site-text-link"
+                        href="https://linkedin.com/in/fbertholin"
+                        target="_blank"
+                        rel="me noopener noreferrer">LinkedIn</a
+                    > and follow my work on
+                    <a
+                        class="site-text-link"
+                        href="https://github.com/arkan"
+                        target="_blank"
+                        rel="me noopener noreferrer">GitHub</a
+                    >.
+                </p>
+            </div>
+        </section>
+
+        <figure class="contact-landscape">
+            <Image
+                src={Annecy2}
+                alt="A paraglider above Lake Annecy and the surrounding mountains"
+                width={1000}
+                quality={85}
+                sizes="(max-width: 767px) calc(100vw - 2rem), 768px"
+            />
+        </figure>
+    </article>
 </Layout>
+
+<style>
+    .contact-page {
+        width: 100%;
+        max-width: 48rem;
+        margin-inline: auto;
+        padding-block: clamp(0.5rem, 2vw, 1.5rem) 1rem;
+    }
+
+    .contact-introduction {
+        display: grid;
+        grid-template-columns: 11.25rem minmax(0, 1fr);
+        gap: clamp(2.5rem, 7vw, 4.5rem);
+        align-items: start;
+    }
+
+    .contact-portrait {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    .contact-copy {
+        color: var(--site-copy);
+        font-size: 1.0625rem;
+        line-height: 1.75;
+    }
+
+    .contact-copy p {
+        margin: 0;
+        text-wrap: pretty;
+    }
+
+    .contact-copy p + p {
+        margin-top: 1.5rem;
+    }
+
+    .contact-landscape {
+        margin: clamp(3rem, 7vw, 5rem) 0 0;
+    }
+
+    .contact-landscape img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 22px 52px -34px rgb(32 37 34 / 65%);
+    }
+
+    @media (max-width: 639px) {
+        .contact-introduction {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .contact-portrait {
+            width: 8rem;
+        }
+
+        .contact-copy {
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+    }
+</style>

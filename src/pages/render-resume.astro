@@ -1,14 +1,13 @@
 ---
 import ResumeLayout from "../layouts/ResumeLayout.astro";
 import { Image } from "astro:assets";
-import Annecy from "../images/annecy.jpg";
 import Florian from "../images/florian3.png";
 import { resume } from "../data/resume";
 import iconLink from "../images/icon-link.png";
 import iconPDF from "../images/icon-pdf.png";
 ---
 
-<ResumeLayout title="Now" description="What I am doing now?">
+<ResumeLayout title={resume.title} description={resume.subtitle}>
     <div class="text-center">
         <h1 class="text-4xl mt-0 mb-0 font-extrabold">{resume.title}</h1>
 

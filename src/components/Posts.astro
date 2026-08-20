@@ -2,67 +2,173 @@
 import { formatDate } from "../js/utils";
 
 const { posts } = Astro.props;
+const postsByYear = posts.reduce((groups: Map<number, any[]>, post: any) => {
+    const year = new Date(post.frontmatter.date).getFullYear();
+    const yearPosts = groups.get(year) ?? [];
+    yearPosts.push(post);
+    groups.set(year, yearPosts);
+    return groups;
+}, new Map());
 ---
 
-<div class="mt-10 max-w-3xl mx-auto">
-    <section>
-        {
-            posts.map((post: any, i: number) => {
-                const currentYear = new Date(
-                    post.frontmatter.date,
-                ).getFullYear();
-                const prevYear =
-                    i > 0
-                        ? new Date(posts[i - 1].frontmatter.date).getFullYear()
-                        : null;
-                const showYearHeader = i === 0 || currentYear !== prevYear;
-                return (
-                    <>
-                        {showYearHeader && (
-                            <>
-                                <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8">
-                                    {currentYear}
-                                </h2>
-                                <hr class="w-36 border-dotted border-neutral-400" />
-                            </>
-                        )}
-                        <article class="mt-6 flex flex-row">
-                            <a
-                                class="pt-2 w-full transition group hover:bg-slate-400/20 hover:shadow-[0_0_15px_15px_rgba(0,0,0,0.5)] hover:shadow-slate-400/20 rounded-lg hover:scale-101"
-                                href={post.url}
-                            >
-                                <div>
-                                    <h3 class="flex items-center text-xl font-semibold">
-                                        <span class="decoration-darkly-500 group-hover:underline group-hover:underline-offset-2">
-                                            {post.frontmatter.title}
-                                        </span>
+<div class="post-archive">
+    {
+        Array.from(postsByYear).map(([year, yearPosts]) => (
+            <section class="post-year" aria-labelledby={`posts-${year}`}>
+                <h2 id={`posts-${year}`} class="post-year-title font-editorial">
+                    {year}
+                </h2>
+
+                <ol class="post-list">
+                    {yearPosts.map((post: any) => (
+                        <li>
+                            <article>
+                                <a class="post-link" href={post.url}>
+                                    <h3 class="post-title font-editorial">
+                                        {post.frontmatter.title}
                                     </h3>
-                                    <div class="text-sm text-neutral-500">
-                                        <div class="flex flex-row flex-wrap items-center">
-                                            <time
-                                                datetime={post.frontmatter.date}
-                                            >
-                                                {formatDate(
-                                                    post.frontmatter.date,
-                                                )}
-                                            </time>
-                                            <span class="px-2 text-darkly-500">
-                                                ·
-                                            </span>
-                                            <span title="Reading time">
-                                                {post.frontmatter.minutesRead}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="pt-2 prose text-left prose-stone w-full max-w-prose line-clamp-5 md:line-clamp-4 hover:overflow-hidden text-neutral-600 md:text-neutral-500 hover:text-neutral-800">
-                                        {post.frontmatter.description}
-                                    </div>
-                                </div>
-                            </a>
-                        </article>
-                    </>
-                );
-            })
-        }
-    </section>
+
+                                    <p class="post-meta">
+                                        <time datetime={post.frontmatter.date}>
+                                            {formatDate(post.frontmatter.date)}
+                                        </time>
+                                        <span aria-hidden="true">·</span>
+                                        <span title="Reading time">
+                                            {post.frontmatter.minutesRead}
+                                        </span>
+                                    </p>
+
+                                    {post.frontmatter.description && (
+                                        <p class="post-description">
+                                            {post.frontmatter.description}
+                                        </p>
+                                    )}
+                                </a>
+                            </article>
+                        </li>
+                    ))}
+                </ol>
+            </section>
+        ))
+    }
 </div>
+
+<style>
+    .post-archive {
+        border-top: 1px solid var(--site-line);
+    }
+
+    .post-year {
+        display: grid;
+        grid-template-columns: 7rem minmax(0, 1fr);
+        gap: clamp(2rem, 6vw, 4rem);
+        border-bottom: 1px solid var(--site-line);
+    }
+
+    .post-year-title {
+        margin: 0;
+        padding-block: 1.5rem;
+        color: var(--site-accent);
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .post-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .post-list li + li {
+        border-top: 1px solid var(--site-line);
+    }
+
+    .post-link {
+        display: block;
+        width: calc(100% + 1.5rem);
+        margin-inline: -0.75rem;
+        padding: 1.5rem 0.75rem;
+        border-radius: 0.75rem;
+        color: inherit;
+        text-decoration: none;
+        transition: background-color 180ms ease-out;
+    }
+
+    .post-title {
+        margin: 0;
+        color: var(--site-ink);
+        font-size: clamp(1.5rem, 3vw, 1.875rem);
+        font-weight: 600;
+        line-height: 1.12;
+        letter-spacing: -0.015em;
+        text-wrap: pretty;
+        transition: color 180ms ease-out;
+    }
+
+    .post-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.5rem 0 0;
+        color: var(--site-muted);
+        font-size: 0.8125rem;
+        line-height: 1.5;
+    }
+
+    .post-meta span[aria-hidden="true"] {
+        color: var(--site-accent);
+    }
+
+    .post-description {
+        max-width: 66ch;
+        margin: 0.75rem 0 0;
+        color: var(--site-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        text-wrap: pretty;
+        transition: color 180ms ease-out;
+    }
+
+    .post-link:hover,
+    .post-link:focus-visible {
+        background: var(--site-surface);
+    }
+
+    .post-link:hover .post-title,
+    .post-link:focus-visible .post-title {
+        color: var(--site-accent-strong);
+    }
+
+    .post-link:hover .post-description,
+    .post-link:focus-visible .post-description {
+        color: var(--site-copy);
+    }
+
+    @media (max-width: 639px) {
+        .post-year {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+
+        .post-year-title {
+            padding-block: 1.25rem 0.75rem;
+            font-size: 1.75rem;
+        }
+
+        .post-link {
+            width: 100%;
+            margin-inline: 0;
+            padding: 1.25rem 0.25rem;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .post-link,
+        .post-title,
+        .post-description {
+            transition: none;
+        }
+    }
+</style>
