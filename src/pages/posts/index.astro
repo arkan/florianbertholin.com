@@ -4,7 +4,7 @@ import PageHeader from "../../components/PageHeader.astro";
 import Posts from "../../components/Posts.astro";
 import { formatBlogPosts } from "../../js/utils";
 
-const allPosts = await Astro.glob("./*.md");
+const allPosts = Object.values(import.meta.glob("./*.md", { eager: true }));
 const formattedPosts = formatBlogPosts(allPosts);
 ---
 

@@ -3,7 +3,9 @@ import Layout from "../../layouts/Layout.astro";
 import PageHeader from "../../components/PageHeader.astro";
 import { formatBlogPosts, slugify, getTags } from "../../js/utils";
 
-const allPosts = await Astro.glob("./../posts/*.md");
+const allPosts = Object.values(
+    import.meta.glob("./../posts/*.md", { eager: true }),
+);
 const tags = getTags(formatBlogPosts(allPosts));
 const tagCounts = tags.reduce((acc: any, tag: any) => {
     acc[tag] = (acc[tag] || 0) + 1;

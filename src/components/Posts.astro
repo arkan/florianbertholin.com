@@ -1,9 +1,9 @@
 ---
-import { formatDate } from "../js/utils";
+import { formatDate, formatDateAttribute, getSiteYear } from "../js/utils";
 
 const { posts } = Astro.props;
 const postsByYear = posts.reduce((groups: Map<number, any[]>, post: any) => {
-    const year = new Date(post.frontmatter.date).getFullYear();
+    const year = getSiteYear(post.frontmatter.date);
     const yearPosts = groups.get(year) ?? [];
     yearPosts.push(post);
     groups.set(year, yearPosts);
@@ -29,7 +29,7 @@ const postsByYear = posts.reduce((groups: Map<number, any[]>, post: any) => {
                                     </h3>
 
                                     <p class="post-meta">
-                                        <time datetime={post.frontmatter.date}>
+                                        <time datetime={formatDateAttribute(post.frontmatter.date)}>
                                             {formatDate(post.frontmatter.date)}
                                         </time>
                                         <span aria-hidden="true">·</span>

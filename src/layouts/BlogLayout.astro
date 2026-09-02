@@ -2,7 +2,7 @@
 import "../styles/global.css";
 
 import Layout from "./Layout.astro";
-import { formatDate, slugify } from "../js/utils";
+import { formatDate, formatDateAttribute, slugify } from "../js/utils";
 
 const { frontmatter } = Astro.props;
 const { title, description, date, tags } = frontmatter;
@@ -21,7 +21,7 @@ const { title, description, date, tags } = frontmatter;
                     >Florian Bertholin</a
                 >
                 <span aria-hidden="true">·</span>
-                <time datetime={date}>{formatDate(date)}</time>
+                <time datetime={formatDateAttribute(date)}>{formatDate(date)}</time>
             </p>
 
             {

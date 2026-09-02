@@ -1,6 +1,6 @@
 import rss from '@astrojs/rss';
 
-import { formatBlogPosts } from "../js/utils"
+import { formatBlogPosts, getDateAtSiteMidnight } from "../js/utils"
 
 const postImportResult = import.meta.glob('./posts/**/*.md', { eager: true });
 const posts = formatBlogPosts(Object.values(postImportResult));
@@ -12,7 +12,7 @@ export const GET = () => rss({
     items: posts.map((post) => ({
         link: post.url,
         title: post.frontmatter.title,
-        pubDate: post.frontmatter.date,
+        pubDate: getDateAtSiteMidnight(post.frontmatter.date),
         description: post.frontmatter.description,
         customData: `
       <author>Florian Bertholin</author>
